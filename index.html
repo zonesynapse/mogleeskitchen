@@ -369,6 +369,73 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* Flip card styles (front/back) */
+        .menu-item {
+            perspective: 1200px;
+        }
+
+        .menu-item-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            height: 100%;
+        }
+
+        .menu-item .front,
+        .menu-item .back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: inherit;
+            overflow: hidden;
+        }
+
+        .menu-item .front {
+            position: relative;
+        }
+
+        .menu-item .back {
+            transform: rotateY(180deg);
+            background: var(--card-bg);
+            padding: 1.25rem;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .menu-item.flipped .menu-item-inner {
+            transform: rotateY(180deg);
+        }
+
+        .menu-item .back .back-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item .back .back-price {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .menu-item .back .back-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            max-width: 22rem;
+        }
+
+        .menu-item .back .back-ctas {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .menu-item-image {
             height: 13.75rem;
             overflow: hidden;
@@ -534,6 +601,10 @@
             padding: 1.875rem;
             border-radius: var(--radius);
             transition: var(--transition);
+            display: block; /* allow anchors with this class to behave like cards */
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
         }
 
         .contact-card:hover {
@@ -1627,11 +1698,11 @@
                         <p>123 Gourmet Avenue<br>Food District, Chennai 600129</p>
                     </div>
                     
-                    <div class="contact-card">
+                    <a class="contact-card" href="tel:+919150465671" aria-label="Call Moglee's Kitchen">
                         <i class="fas fa-phone-alt"></i>
                         <h4>Call Us</h4>
-                        <p>+91 91504 65671<br>+91 98765 43210</p>
-                    </div>
+                        <p>+91 91504 65671</p>
+                    </a>
                     
                     <div class="contact-card">
                         <i class="fas fa-clock"></i>
@@ -1678,8 +1749,8 @@
                     </div>
                     <p class="footer-about">Experience the perfect blend of flavors at Moglee's Kitchen, where every dish is crafted with passion and served with love.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/moglee_kitchen/" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1Zgnj3JEz9/" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-tripadvisor"></i></a>
                     </div>
@@ -1825,6 +1896,22 @@
                     alert(`Added ${itemName} (${itemPrice}) to your order!`);
                 });
             }
+        });
+
+        // Fallback/confirmation for tel: links on non-mobile devices
+        document.querySelectorAll('.contact-card[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // If running on a desktop without a handler, still allow default but show a small confirm
+                const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+                if (!isMobile) {
+                    e.preventDefault();
+                    const tel = link.getAttribute('href').replace('tel:', '');
+                    if (confirm(`Call ${tel} from this device?`)) {
+                        // Attempt to open the tel: link anyway
+                        window.location.href = `tel:${tel}`;
+                    }
+                }
+            });
         });
     </script>
 </body>
