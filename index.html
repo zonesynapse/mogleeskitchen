@@ -177,6 +177,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
             background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover no-repeat;
@@ -188,6 +189,8 @@
             max-width: 43.75rem;
             z-index: 2;
             width: 100%;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .hero-badge {
@@ -223,6 +226,8 @@
             display: flex;
             gap: 0.9375rem;
             flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
         }
 
         .btn {
@@ -1565,6 +1570,46 @@
             </div>
         </div>
     </section>
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">The journey of passion, flavor, and culinary excellence</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Moglee's Kitchen Interior">
+                </div>
+                <div class="about-text">
+                    <h3>Crafting Culinary Excellence Since 2015</h3>
+                    <p>Moglee's Kitchen began as a humble passion project between two culinary enthusiasts with a shared vision: to redefine casual dining through exceptional flavors and premium ingredients.</p>
+                    <p>Today, we stand as a testament to that vision, having served thousands of satisfied customers and earning recognition as one of the city's premier destinations for fried chicken, burgers, and shawarma.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <span>Best Fried Chicken in Town</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <span>Fresh ingredients daily</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <span>Thousands of satisfied customers</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <span>4.8/5 rating across platforms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
